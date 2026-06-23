@@ -137,11 +137,11 @@ window.QUESTIONS = [
       "W ogóle nie analizuje nagłówków pakietów",
     ],
   },
-  // 13 — RARP (NOWE)
+  // 13 — ARP (NOWE)
   {
     topic: "Protokoły / adresacja",
     difficulty: "medium",
-    text: "Jak nazywa się protokół służący do odwzorowania adresów MAC na adresy IP?",
+    text: "Jak nazywa się protokół służący do odwzorowania adresów IP na adresy MAC?",
     options: ["ARP", "RARP", "ICMP", "DHCP"],
   },
 
@@ -231,5 +231,5 @@ window.QUESTIONS = [
  * Zakodowany klucz poprawnych odpowiedzi (indeksy 0–3 dla pytań 1–20).
  * Kodowanie: JSON → XOR z kluczem → base64. Dekodowanie w quiz.js.
  */
-window.ANSWER_KEY = "FWNqegEBHAAaHWJXWEVDQUdjSVFZQ0VFVX9/dGceHgEeBAF9SUZbXC8=";
+window.ANSWER_KEY = "FWNqegEBHAAaHWJXWEVDQUdjSVFZQ0VFVX5/dGceHgEeBAF9SUZbXC8=";
 window.ANSWER_SALT = "NSFK-2026-NetworkSecurity";
