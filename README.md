@@ -119,3 +119,31 @@ python -m http.server 8000
 Pytania zmienisz w [`js/questions.js`](js/questions.js). Jeśli zmienisz liczbę pytań
 lub poprawne odpowiedzi, trzeba zregenerować zakodowany klucz `ANSWER_KEY` —
 skrypt do tego znajdziesz w pliku [`tools/encode-answers.js`](tools/encode-answers.js).
+
+---
+
+## Panel administratora ([`admin.html`](admin.html))
+
+Link „Panel administratora" jest w stopce strony testu — widoczny dla wszystkich,
+ale dane pokazują się dopiero po podaniu hasła.
+
+**Jak działa bezpieczeństwo:** hasło NIE jest sprawdzane w przeglądarce. Wyniki
+zwraca funkcja bazodanowa `admin_get_results(p_password)` (`SECURITY DEFINER`),
+która najpierw weryfikuje hasło względem hasha (bcrypt) w prywatnej tabeli
+`private.admin_auth`. Tabela `results` pozostaje niedostępna do odczytu dla klienta
+`anon` — dane można pobrać wyłącznie przez tę funkcję z poprawnym hasłem.
+
+Każdy wynik zawiera kolumnę `details` (JSONB) ze szczegółami: dla każdego pytania
+temat, treść, odpowiedź wybraną, poprawną oraz flagę `ok`. Panel pozwala rozwinąć
+wiersz i zobaczyć, które pytania poszły źle.
+
+**Zmiana hasła administratora** — uruchom w Supabase → SQL Editor:
+
+```sql
+update private.admin_auth
+set pwd_hash = extensions.crypt('NOWE_HASLO', extensions.gen_salt('bf'))
+where id = 1;
+```
+
+> To shared-password (jedno hasło dla adminów). Dla pełnych kont per-osoba można
+> przejść na Supabase Auth + polityki RLS `to authenticated` — daj znać.

@@ -42,6 +42,7 @@
     selected: null, // indeks wybranej opcji (po przetasowaniu)
     score: 0,
     deck: [], // pytania z przetasowanymi opcjami + mapowaniem na poprawną
+    details: [], // szczegóły odpowiedzi (do panelu admina)
   };
 
   // ---- Elementy DOM ------------------------------------------------------
@@ -102,6 +103,7 @@
     state.current = 0;
     state.score = 0;
     state.selected = null;
+    state.details = [];
 
     const badge = el("userBadge");
     badge.textContent = "👤 " + state.username;
@@ -159,7 +161,17 @@
   el("nextBtn").addEventListener("click", function () {
     if (state.selected === null) return;
     const q = state.deck[state.current];
-    if (state.selected === q.correctPos) state.score++;
+    const isCorrect = state.selected === q.correctPos;
+    if (isCorrect) state.score++;
+
+    state.details.push({
+      nr: state.current + 1,
+      temat: q.topic,
+      pytanie: q.text,
+      wybrana: q.options[state.selected],
+      poprawna: q.options[q.correctPos],
+      ok: isCorrect,
+    });
 
     if (state.current < state.deck.length - 1) {
       state.current++;
@@ -183,10 +195,10 @@
     ring.style.setProperty("--ring-deg", (pct * 3.6) + "deg");
 
     show("result");
-    saveResult(state.username, state.score, total, pct);
+    saveResult(state.username, state.score, total, pct, state.details);
   }
 
-  async function saveResult(username, score, total, pct) {
+  async function saveResult(username, score, total, pct, details) {
     const status = el("saveStatus");
     const supa = getSupabase();
     if (!supa) {
@@ -202,6 +214,7 @@
         score: score,
         total: total,
         percentage: pct,
+        details: details,
       });
       if (error) throw error;
       status.textContent = "✓ Wynik zapisany w bazie danych.";

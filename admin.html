@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panel administratora — Network Security</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app app-wide">
+    <header class="topbar">
+      <div class="brand">
+        <span class="logo-chip"><img src="logo-apius.png" alt="Apius" class="logo" /></span>
+        <span class="brand-title">Panel administratora</span>
+      </div>
+      <a href="index.html" class="user-badge" style="text-decoration:none">← Wróć do testu</a>
+    </header>
+
+    <!-- LOGOWANIE -->
+    <section id="admin-login" class="screen">
+      <div class="card">
+        <h1>Panel administratora</h1>
+        <p class="lead">Podaj hasło, aby zobaczyć wyniki testów i szczegóły odpowiedzi.</p>
+        <form id="adminForm" autocomplete="off">
+          <label for="adminPass">Hasło administratora:</label>
+          <input id="adminPass" type="password" placeholder="••••••••" required />
+          <p id="adminError" class="error hidden"></p>
+          <button type="submit" class="btn btn-primary">Pokaż wyniki →</button>
+        </form>
+        <p class="hint" id="adminDbStatus"></p>
+      </div>
+    </section>
+
+    <!-- WYNIKI -->
+    <section id="admin-results" class="screen hidden">
+      <div class="card">
+        <div class="quiz-foot" style="margin-top:0; margin-bottom:18px;">
+          <div id="statsLine" class="progress-info" style="margin:0;"></div>
+          <div style="display:flex; gap:10px;">
+            <button id="refreshBtn" class="btn btn-secondary">Odśwież</button>
+            <button id="logoutBtn" class="btn btn-secondary">Wyloguj</button>
+          </div>
+        </div>
+        <div id="resultsWrap" class="results-table-wrap"></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Platforma testowa · Komputerowe wspomaganie · 2026
+    </footer>
+  </div>
+
+  <script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script defer src="js/config.js"></script>
+  <script defer src="js/admin.js"></script>
+</body>
+</html>
