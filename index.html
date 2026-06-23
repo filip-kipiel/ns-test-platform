@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test: Network Security</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">🛡️ Network Security — Test</div>
+      <div id="userBadge" class="user-badge hidden"></div>
+    </header>
+
+    <!-- EKRAN STARTOWY -->
+    <section id="screen-start" class="screen">
+      <div class="card">
+        <h1>Test wiedzy: Network Security</h1>
+        <p class="lead">
+          Test składa się z <strong>15 pytań</strong> jednokrotnego wyboru (ABCD)
+          o&nbsp;rosnącym poziomie trudności. Zakres: RFC1918, DHCP/DORA, DNS,
+          Active Directory, NAT oraz IDS/IPS.
+        </p>
+        <form id="loginForm" autocomplete="off">
+          <label for="username">Podaj swój login / imię i nazwisko:</label>
+          <input
+            id="username"
+            type="text"
+            placeholder="np. jan.kowalski"
+            maxlength="60"
+            required
+          />
+          <p id="loginError" class="error hidden"></p>
+          <button type="submit" class="btn btn-primary">Rozpocznij test →</button>
+        </form>
+        <p class="hint" id="dbStatus">Łączenie z bazą danych…</p>
+      </div>
+    </section>
+
+    <!-- EKRAN TESTU -->
+    <section id="screen-quiz" class="screen hidden">
+      <div class="card">
+        <div class="quiz-head">
+          <div class="progress-info">
+            Pytanie <span id="qIndex">1</span> / <span id="qTotal">15</span>
+            <span id="diffBadge" class="diff-badge"></span>
+          </div>
+          <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+        </div>
+
+        <h2 id="questionText" class="question-text"></h2>
+        <div id="options" class="options"></div>
+
+        <div class="quiz-foot">
+          <span id="answeredHint" class="hint"></span>
+          <button id="nextBtn" class="btn btn-primary" disabled>Dalej →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- EKRAN WYNIKU -->
+    <section id="screen-result" class="screen hidden">
+      <div class="card result-card">
+        <h1>Wynik testu</h1>
+        <div id="scoreRing" class="score-ring">
+          <span id="scorePct">0%</span>
+        </div>
+        <p class="result-line">
+          <strong id="scoreUser"></strong>, uzyskałeś/aś
+          <strong id="scoreText">0 / 15</strong> poprawnych odpowiedzi.
+        </p>
+        <p id="saveStatus" class="hint"></p>
+        <p class="hint">Dziękujemy za rozwiązanie testu. Możesz zamknąć tę stronę.</p>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Platforma testowa · Komputerowe wspomaganie · 2026
+    </footer>
+  </div>
+
+  <!-- Supabase JS (CDN) — ładowany asynchronicznie, NIE blokuje działania testu.
+       Jeśli CDN jest niedostępny, aplikacja działa w trybie offline. -->
+  <script async src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script defer src="js/config.js"></script>
+  <script defer src="js/questions.js"></script>
+  <script defer src="js/quiz.js"></script>
+</body>
+</html>
