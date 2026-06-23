@@ -6,7 +6,7 @@
  * (indeksy 0–3: A=0, B=1, C=2, D=3 — względem KOLEJNOŚCI opcji w questions.js),
  * uruchom skrypt i wklej wynik do `window.ANSWER_KEY` w js/questions.js.
  */
-const answers = [0, 1, 3, 2, 0, 2, 3, 0, 2, 1, 2, 3, 1, 2, 3];
+const answers = [0, 1, 3, 2, 0, 2, 2, 3, 0, 2, 1, 1, 1, 2, 3, 1, 2, 3, 2, 3];
 const salt = "NSFK-2026-NetworkSecurity"; // musi być identyczny jak ANSWER_SALT
 
 const json = JSON.stringify(answers);

@@ -10,14 +10,15 @@
  * więc pozycja A/B/C/D nic nie zdradza.
  */
 window.QUESTIONS = [
-  // 1 — RFC1918 (easy)
+  // ===================== EASY =====================
+  // 1 — RFC1918
   {
     topic: "RFC1918",
     difficulty: "easy",
     text: "Który z poniższych zakresów adresów jest adresacją prywatną zgodnie z RFC1918?",
     options: ["172.16.0.0/12", "8.0.0.0/8", "200.100.50.0/24", "169.254.0.0/16"],
   },
-  // 2 — DHCP/DORA (easy)
+  // 2 — DHCP/DORA
   {
     topic: "DHCP / DORA",
     difficulty: "easy",
@@ -29,14 +30,14 @@ window.QUESTIONS = [
       "Discover, Open, Reply, Accept",
     ],
   },
-  // 3 — DNS (easy)
+  // 3 — DNS
   {
     topic: "DNS",
     difficulty: "easy",
     text: "Który rekord DNS mapuje nazwę domeny na adres IPv4?",
     options: ["MX", "CNAME", "TXT", "A"],
   },
-  // 4 — NAT (easy)
+  // 4 — NAT
   {
     topic: "NAT",
     difficulty: "easy",
@@ -48,14 +49,23 @@ window.QUESTIONS = [
       "Rozwiązywanie nazw domen na adresy IP",
     ],
   },
-  // 5 — AD (easy/medium)
+  // 5 — AD
   {
     topic: "Active Directory",
     difficulty: "easy",
     text: "Na jakim protokole dostępu do katalogu opiera się głównie Active Directory?",
     options: ["LDAP", "SNMP", "SMTP", "RDP"],
   },
-  // 6 — IDS/IPS (medium)
+  // 6 — Model OSI (NOWE)
+  {
+    topic: "Model OSI",
+    difficulty: "easy",
+    text: "Ile warstw ma model odniesienia ISO/OSI?",
+    options: ["4", "5", "7", "8"],
+  },
+
+  // ===================== MEDIUM =====================
+  // 7 — IDS/IPS
   {
     topic: "IDS / IPS",
     difficulty: "medium",
@@ -67,7 +77,7 @@ window.QUESTIONS = [
       "IDS działa tylko na hostach, a IPS tylko w sieci",
     ],
   },
-  // 7 — RFC1918 (medium)
+  // 8 — RFC1918 (APIPA)
   {
     topic: "RFC1918",
     difficulty: "medium",
@@ -79,7 +89,7 @@ window.QUESTIONS = [
       "To adres APIPA / link-local (RFC3927) — NIE należy do RFC1918",
     ],
   },
-  // 8 — DHCP/DORA (medium)
+  // 9 — DHCP/DORA
   {
     topic: "DHCP / DORA",
     difficulty: "medium",
@@ -91,7 +101,7 @@ window.QUESTIONS = [
       "Anycast do najbliższego serwera",
     ],
   },
-  // 9 — DNS (medium)
+  // 10 — DNS (PTR)
   {
     topic: "DNS",
     difficulty: "medium",
@@ -103,7 +113,7 @@ window.QUESTIONS = [
       "Do delegacji strefy do innego serwera",
     ],
   },
-  // 10 — NAT (medium/hard)
+  // 11 — NAT (PAT)
   {
     topic: "NAT",
     difficulty: "medium",
@@ -115,7 +125,28 @@ window.QUESTIONS = [
       "Szyfrowanie nagłówków pakietów IP",
     ],
   },
-  // 11 — AD (hard)
+  // 12 — Stateful vs stateless (NOWE)
+  {
+    topic: "Firewall",
+    difficulty: "medium",
+    text: "Czym charakteryzuje się zapora typu stateful (śledząca stan) w odróżnieniu od stateless?",
+    options: [
+      "Filtruje pakiety wyłącznie na podstawie pojedynczych reguł, nie pamiętając kontekstu połączeń",
+      "Śledzi stan aktywnych połączeń i podejmuje decyzje na podstawie kontekstu całej sesji",
+      "Działa wyłącznie w warstwie aplikacji (L7)",
+      "W ogóle nie analizuje nagłówków pakietów",
+    ],
+  },
+  // 13 — RARP (NOWE)
+  {
+    topic: "Protokoły / adresacja",
+    difficulty: "medium",
+    text: "Jak nazywa się protokół służący do odwzorowania adresów MAC na adresy IP?",
+    options: ["ARP", "RARP", "ICMP", "DHCP"],
+  },
+
+  // ===================== HARD =====================
+  // 14 — AD (Kerberos)
   {
     topic: "Active Directory",
     difficulty: "hard",
@@ -127,7 +158,7 @@ window.QUESTIONS = [
       "OAuth 2.0",
     ],
   },
-  // 12 — IDS/IPS (hard)
+  // 15 — IDS/IPS (anomaly)
   {
     topic: "IDS / IPS",
     difficulty: "hard",
@@ -139,7 +170,7 @@ window.QUESTIONS = [
       "Może wykryć nowe/nieznane ataki (0-day), ale generuje więcej fałszywych alarmów",
     ],
   },
-  // 13 — DNS (hard)
+  // 16 — DNS (DNSSEC)
   {
     topic: "DNS",
     difficulty: "hard",
@@ -151,7 +182,7 @@ window.QUESTIONS = [
       "Kompresję odpowiedzi w celu przyspieszenia transmisji",
     ],
   },
-  // 14 — DHCP/DORA (hard)
+  // 17 — DHCP snooping
   {
     topic: "DHCP / DORA",
     difficulty: "hard",
@@ -163,7 +194,7 @@ window.QUESTIONS = [
       "Zastępuje DHCP statycznym adresowaniem hostów",
     ],
   },
-  // 15 — DNS / atak (hard)
+  // 18 — DNS poisoning
   {
     topic: "DNS / Bezpieczeństwo",
     difficulty: "hard",
@@ -175,11 +206,30 @@ window.QUESTIONS = [
       "DNS cache poisoning (DNS spoofing)",
     ],
   },
+  // 19 — NGFW (NOWE)
+  {
+    topic: "Firewall / NGFW",
+    difficulty: "hard",
+    text: "Czym charakteryzuje się NGFW (Next-Generation Firewall) w porównaniu z klasyczną zaporą?",
+    options: [
+      "Działa wyłącznie jako filtr pakietów w warstwach L3–L4, bez wglądu w aplikacje",
+      "Jest to wyłącznie sprzętowy router z funkcją NAT",
+      "Integruje m.in. inspekcję warstwy aplikacji (L7), IPS, kontrolę aplikacji oraz często inspekcję ruchu szyfrowanego (TLS)",
+      "Obsługuje jedynie statyczne reguły oparte na adresach MAC",
+    ],
+  },
+  // 20 — Podchwytliwe: poufność vs integralność (NOWE)
+  {
+    topic: "Kryptografia (podchwytliwe)",
+    difficulty: "hard",
+    text: "Które z poniższych zapewnia POUFNOŚĆ danych (a nie jedynie ich integralność lub kodowanie)?",
+    options: ["SHA-256", "Base64", "CRC32", "AES"],
+  },
 ];
 
 /*
- * Zakodowany klucz poprawnych odpowiedzi (indeksy 0–3 dla pytań 1–15).
+ * Zakodowany klucz poprawnych odpowiedzi (indeksy 0–3 dla pytań 1–20).
  * Kodowanie: JSON → XOR z kluczem → base64. Dekodowanie w quiz.js.
  */
-window.ANSWER_KEY = "FWNqegEBHAAaHWJXWERDQkdhSVJZQEVHVX9/dGcebw==";
+window.ANSWER_KEY = "FWNqegEBHAAaHWJXWEVDQUdjSVFZQ0VFVX9/dGceHgEeBAF9SUZbXC8=";
 window.ANSWER_SALT = "NSFK-2026-NetworkSecurity";

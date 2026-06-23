@@ -1,20 +1,20 @@
 # Platforma testowa — Network Security
 
-Statyczna aplikacja (HTML/CSS/JS) z testem jednokrotnego wyboru (ABCD), 15 pytań
+Statyczna aplikacja (HTML/CSS/JS) z testem jednokrotnego wyboru (ABCD), 20 pytań
 o rosnącej trudności z zakresu: **RFC1918, DHCP/DORA, DNS, Active Directory, NAT, IDS/IPS**.
 Wyniki zapisywane są do bazy **Supabase (PostgreSQL)**. Hosting: **GitHub Pages**.
 
 ## Jak to działa
 
 1. Użytkownik wpisuje login na stronie startowej.
-2. Przechodzi przez 15 pytań (kolejność odpowiedzi jest losowana przy każdym podejściu).
+2. Przechodzi przez 20 pytań (kolejność odpowiedzi jest losowana przy każdym podejściu).
 3. Na koniec widzi wynik (liczba poprawnych + %), który zostaje zapisany w bazie.
 
 ```
 index.html
 ├── css/style.css      → wygląd
 ├── js/config.js       → klucze Supabase (do uzupełnienia)
-├── js/questions.js    → bank 15 pytań + zakodowany klucz odpowiedzi
+├── js/questions.js    → bank 20 pytań + zakodowany klucz odpowiedzi
 └── js/quiz.js         → logika testu + zapis do bazy
 ```
 
@@ -46,7 +46,7 @@ create policy "anon insert results"
   to anon
   with check (
     char_length(username) between 2 and 60
-    and total = 15
+    and total = 20
     and score between 0 and total
     and percentage between 0 and 100
   );
